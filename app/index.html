@@ -16,11 +16,15 @@
 		<div id="app">
 			<h2 class="title has-text-centered dividing-header">UpVote!</h2>
 			<div class="section">
-				<article class="media">
+				<article
+					v-for="submission in submissions"
+					:key="submission.id"
+					class="media"
+				>
 					<figure class="media-left">
 						<img
-							src="../public/images/submissions/image-yellow.png"
-							alt="image yellow"
+							v-bind:src="submission.submissionImage"
+							alt="image color"
 							class="image is-64x64"
 						/>
 					</figure>
@@ -28,19 +32,24 @@
 						<div class="content">
 							<p>
 								<strong>
-									<a href="#" class="has-text-info">
-										Yellow Pail
+									<a
+										v-bind:href="submission.url"
+										class="has-text-info"
+									>
+										{{ submission.title }}
 									</a>
-									<span class="tag-is-small">#4</span>
+									<span class="tag-is-small"
+										>#{{ submission.id }}</span
+									>
 								</strong>
 								<br />
-								On-demand sand castle construction expertise
+								{{ submission.description }}
 								<br />
 								<small class="is-size-7">
 									Submitted by:
 									<img
-										src="../public/images/avatars/daniel.jpg"
-										alt="daniel"
+										v-bind:src="submission.avatar"
+										alt="avatar"
 										class="image is-24x24"
 									/>
 								</small>
@@ -50,7 +59,9 @@
 					<div class="media-right">
 						<span class="icon is-small">
 							<i class="fa fa-chevron-up"></i>
-							<strong class="has-text-info">10</strong>
+							<strong class="has-text-info"
+								>{{ submission.votes }}</strong
+							>
 						</span>
 					</div>
 				</article>
